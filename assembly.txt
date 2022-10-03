@@ -1,0 +1,20 @@
+DATA:
+ first
+ last
+ count 0
+CODE:
+start:
+ MOV B, (first)
+ MOV A, (B)
+ AND A, 1
+ CMP A, 1
+ JNE next
+ INC (count)
+next:
+ INC B
+ CMP B, (last)
+ JGT finish
+ INC (first)
+ JMP start
+finish:
+ MOV A, (count)
